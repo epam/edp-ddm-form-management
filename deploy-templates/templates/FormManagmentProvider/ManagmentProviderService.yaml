@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.formManagementProvider.name }}
+  labels:
+    app: {{ .Values.formManagementProvider.name }}
+spec:
+  {{- if .Values.formManagementProvider.service.clusterIP }}
+  clusterIP: {{ .Values.formManagementProvider.service.clusterIP }}
+  {{- end }}
+  ports:
+    - name: ui
+      {{- if eq .Values.formManagementProvider.service.type "NodePort" }}
+      nodePort: {{ .Values.formManagementProvider.service.nodePort }}
+      {{- end }}
+      port: {{ .Values.formManagementProvider.service.port }}
+      targetPort: {{ .Values.formManagementProvider.port }}
+  selector:
+    app: {{ .Values.formManagementProvider.name }}
+  type: "{{ .Values.formManagementProvider.service.type }}"

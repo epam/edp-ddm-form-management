@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.formManagementProvider.name }}-db
+  labels:
+    app: {{ .Values.formManagementProvider.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.formManagementProvider.name }}-db
+  serviceName: {{ .Values.formManagementProvider.name }}-db-headless
+  replicas: {{ .Values.formManagementProviderDb.replicas }}
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.formManagementProvider.name }}-db-data
+      labels:
+        app: {{ .Values.formManagementProvider.name }}-db
+    spec:
+      containers:
+      - name: {{ .Values.formManagementProvider.name }}-db
+        image: {{ template "dockerProxyRegistry" . -}} {{ .Values.formManagementProviderDb.image }}
+        ports:
+          - containerPort: {{ .Values.formManagementProviderDb.port }}
+            name: mongo
+        env:
+          - name: MONGO_INITDB_DATABASE
+            value: {{ .Values.formManagementProviderDb.defaultDatabase | quote }}
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: "{{ .Values.formManagementProvider.name }}-db-credentials"
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "{{ .Values.formManagementProvider.name }}-db-credentials"
+        volumeMounts:
+          - name: {{ .Values.formManagementProvider.name }}-db-data
+            mountPath: /data/db
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.formManagementProviderDb.port }}
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          tcpSocket:
+            port: {{ .Values.formManagementProviderDb.port }}
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+      serviceAccountName: {{ .Chart.Name }}
+      {{- if .Values.formManagementProviderDb.nodeSelector }}
+      nodeSelector: {{ toYaml .Values.formManagementProviderDb.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- if .Values.formManagementProviderDb.podSecurityContext }}
+      securityContext: {{ toYaml .Values.formManagementProviderDb.podSecurityContext | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ .Values.formManagementProvider.name }}-db-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{ .Values.formManagementProviderDb.storage.size }}
+        {{ include "db.storageClass" . }}

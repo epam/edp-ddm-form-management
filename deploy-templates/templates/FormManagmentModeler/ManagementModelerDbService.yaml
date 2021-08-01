@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.formManagementModeler.name }}-db-headless
+  labels:
+    app: {{ .Values.formManagementModeler.name }}-db
+spec:
+  {{- if .Values.formManagementModelerDb.service.clusterIP }}
+  clusterIP: {{ .Values.formManagementModelerDb.service.clusterIP }}
+  {{- end }}
+  ports:
+    - name: {{ .Values.formManagementModeler.name }}-db
+      {{- if eq .Values.formManagementModelerDb.service.type "NodePort" }}
+      nodePort: {{ .Values.formManagementModelerDb.service.nodePort }}
+      {{- end }}
+      port: {{ .Values.formManagementModelerDb.service.port }}
+      targetPort: {{ .Values.formManagementModelerDb.port }}
+  selector:
+    app: {{ .Values.formManagementModeler.name }}-db
+  type: "{{ .Values.formManagementModelerDb.service.type }}"

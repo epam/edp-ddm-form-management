@@ -1,0 +1,6 @@
+apiVersion: v2
+description: Chart for deployng form-management portal
+maintainers:
+- email: dmytro_zinchenko1@epam.com
+name: form-management
+version: 0.0.1

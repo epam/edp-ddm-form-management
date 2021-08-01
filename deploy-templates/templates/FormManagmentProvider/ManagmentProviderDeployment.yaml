@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.formManagementProvider.name }}
+  labels:
+    app: {{ .Values.formManagementProvider.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.formManagementProvider.name }}
+  replicas: {{ .Values.formManagementProvider.replicas }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.formManagementProvider.name }}
+      annotations:
+        sidecar.istio.io/inject: "false"        
+    spec:
+      initContainers:
+      - command:
+          - sh
+          - '-c'
+          - >-
+            while ! nc -w 1 {{ .Values.formManagementProvider.name }}-db-headless {{ .Values.formManagementProviderDb.service.port }} </dev/null; do echo waiting for
+            database; sleep 10; done;
+        image: {{ template "dockerProxyRegistry" . -}} busybox
+        imagePullPolicy: IfNotPresent
+        name: {{ .Values.formManagementProvider.name }}-init
+      containers:
+      - name: {{ .Values.formManagementProvider.name }}
+        image: "{{ .Values.image.name }}:{{ .Values.image.version }}"
+        ports:
+          - containerPort: {{ .Values.formManagementProvider.port }}
+            name: ui
+        env:
+          - name: ROOT_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: "{{ .Values.formManagementProvider.name }}-credentials"
+          - name: ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "{{ .Values.formManagementProvider.name }}-credentials"
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: "{{ .Values.formManagementProvider.name }}-db-credentials"
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "{{ .Values.formManagementProvider.name }}-db-credentials"
+          - name: NODE_CONFIG
+            value: >-
+              {"mongo":
+              "mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@{{ .Values.formManagementProvider.name }}-db-headless:{{ .Values.formManagementProviderDb.service.port }}/{{ .Values.formManagementProviderDb.defaultDatabase }}?authSource=admin",
+              "host": "{{ .Values.formManagementProvider.name }}-{{ .Values.cdPipelineName }}-{{ .Values.cdPipelineStageName }}.{{ .Values.dnsWildcard }}",
+              "domain": "https://{{ .Values.formManagementProvider.name }}-{{ .Values.cdPipelineName }}-{{ .Values.cdPipelineStageName }}.{{ .Values.dnsWildcard }}"}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.formManagementProvider.healthCheckPath }}
+            port: {{ .Values.formManagementProvider.port }}
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.formManagementProvider.healthCheckPath }}
+            port: {{ .Values.formManagementProvider.port }}
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+      serviceAccountName: {{ .Chart.Name }}
+      {{- if .Values.formManagementProvider.nodeSelector }}
+      nodeSelector: {{ toYaml .Values.formManagementProvider.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- if .Values.formManagementProvider.podSecurityContext }}
+      securityContext: {{ toYaml .Values.formManagementProvider.podSecurityContext | nindent 8 }}
+      {{- end }}

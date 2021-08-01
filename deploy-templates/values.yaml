@@ -1,0 +1,66 @@
+formManagementModeler:
+  name: form-management-modeler
+  port: 3001
+  service:
+    type: ClusterIP
+    port: 3001
+  replicas: 1
+  credentials:
+    username: admin@edp-epam.com
+    password: password123
+  healthCheckPath: /form
+
+formManagementProvider:
+  name: form-management-provider
+  port: 3001
+  service:
+    type: ClusterIP
+    port: 3001
+  replicas: 1
+  credentials:
+    username: admin@edp-epam.com
+    password: password123
+  healthCheckPath: /form
+
+formManagementModelerDb:
+  image: mongo:4.1
+  port: 27017
+  service:
+    type: ClusterIP
+    clusterIP: None
+    port: 27017
+  replicas: 1
+  defaultDatabase: formio
+  credentials:
+    username: root
+    # password: '' # randomly generated
+  storage:
+    size: 2Gi
+
+formManagementProviderDb:
+  image: mongo:4.1
+  port: 27017
+  service:
+    type: ClusterIP
+    clusterIP: None
+    port: 27017
+  replicas: 1
+  defaultDatabase: formio
+  credentials:
+    username: root
+    # password: '' # randomly generated
+  storage:
+    size: 2Gi
+
+formManagementDb:
+  storage:
+    class: gp2-c
+
+# Values for local test templating
+cdPipelineName: pipeline
+cdPipelineStageName: stage
+dnsWildcard: localhost
+image:
+  name: form-modeler-portal
+  version: latest
+
