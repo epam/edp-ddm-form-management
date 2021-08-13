@@ -64,3 +64,9 @@ image:
   name: form-modeler-portal
   version: latest
 
+keycloak:
+  realms:
+    officer: officer-portal
+    citizen: citizen-portal
+  certificatesEndpoint: /protocol/openid-connect/certs
+

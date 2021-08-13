@@ -19,7 +19,8 @@ spec:
       labels:
         app: {{ .Values.formManagementProvider.name }}
       annotations:
-        sidecar.istio.io/inject: "false"        
+        sidecar.istio.io/inject: "true"
+        traffic.sidecar.istio.io/excludeOutboundPorts: {{ .Values.formManagementProviderDb.service.port }}
     spec:
       initContainers:
       - command:
