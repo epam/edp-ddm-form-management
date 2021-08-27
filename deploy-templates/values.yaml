@@ -68,5 +68,6 @@ keycloak:
   realms:
     officer: officer-portal
     citizen: citizen-portal
+    admin: admin
   certificatesEndpoint: /protocol/openid-connect/certs
 
