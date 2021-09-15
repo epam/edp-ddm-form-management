@@ -60,6 +60,7 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nunjucks": "^3.2.2",
     "progress": "^2.0.3",
+    "prom-client": "^13.2.0",
     "prompt": "^1.0.0",
     "q": "^1.5.0",
     "resourcejs": "^2.3.2",

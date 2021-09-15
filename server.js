@@ -16,6 +16,7 @@ const mainModule = require('./index');
 const util = require('./src/util/util');
 const kongAuthHandler = require('./src/middleware/kongAuthHandler');
 const installScript = require('./install');
+const customRoutes = require('./src/routes');
 
 const test = process.env.TEST_SUITE;
 const noInstall = process.env.NO_INSTALL;
@@ -46,6 +47,9 @@ module.exports = function serverModule(options = {}) {
 
   // Use the express application.
   const app = options.app || express();
+
+  // Non formio custom routes
+  app.use(customRoutes);
 
   // Use the given config.
   const config = options.config || nodeConfig;
