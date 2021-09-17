@@ -15,6 +15,9 @@ spec:
       {{- end }}
       port: {{ .Values.formManagementModelerDb.service.port }}
       targetPort: {{ .Values.formManagementModelerDb.port }}
+    - name: {{ .Values.formManagementModeler.name }}-metrics
+      port: {{ .Values.metrics.service.port }}
+      targetPort: metrics
   selector:
     app: {{ .Values.formManagementModeler.name }}-db
   type: "{{ .Values.formManagementModelerDb.service.type }}"

@@ -18,6 +18,30 @@ spec:
         app: {{ .Values.formManagementModeler.name }}-db
     spec:
       containers:
+      - name: {{ .Values.formManagementModeler.name }}-db-metrics
+        image: {{ .Values.metrics.image }}
+        command:
+          - /bin/bash
+          - '-ec'
+        args:
+          - >
+            /bin/mongodb_exporter --web.listen-address ":{{ .Values.metrics.containerPort }}" --mongodb.uri
+            "mongodb://$MONGODB_ROOT_USER:$MONGODB_ROOT_PASSWORD@{{ .Values.formManagementModeler.name }}-db-headless:{{ .Values.formManagementModelerDb.service.port }}/{{ .Values.formManagementModelerDb.defaultDatabase }}?authSource=admin"
+        env:
+          - name: MONGODB_ROOT_USER
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.formManagementModeler.name }}-db-credentials"
+                key: username
+          - name: MONGODB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.formManagementModeler.name }}-db-credentials"
+                key: password
+        ports:
+          - name: metrics
+            containerPort: {{ .Values.metrics.containerPort }}
+            protocol: TCP 
       - name: {{ .Values.formManagementModeler.name }}-db
         image: {{ template "dockerProxyRegistry" . -}} {{ .Values.formManagementModelerDb.image }}
         ports:

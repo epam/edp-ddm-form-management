@@ -71,3 +71,16 @@ keycloak:
     admin: admin
   certificatesEndpoint: /protocol/openid-connect/certs
 
+metrics:
+  image: 'bitnami/mongodb-exporter:0.11.2-debian-10-r281'
+  containerPort: 9216
+  service:
+    port: 9216
+
+  prometheus:
+    endpoints:
+      - scrapePath: "/metrics"
+        port: "{{ .Values.metrics.service.port }}"
+
+monitoring:
+  namespace: openshift-monitoring

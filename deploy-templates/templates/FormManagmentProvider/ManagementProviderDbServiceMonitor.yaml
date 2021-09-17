@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.formManagementProvider.name }}-db-{{ .Values.namespace }}
+  namespace: {{ .Values.monitoring.namespace }}
+  labels:
+    app: {{ .Values.formManagementProvider.name }}
+    relatedNamespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+    {{- range .Values.metrics.prometheus.endpoints }}
+    - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+      interval: 30s
+      path: {{ .scrapePath }}
+      scheme: http
+      targetPort: {{ tpl .port $ }}
+    {{- end }}
+  jobLabel: app
+  namespaceSelector:
+    matchNames:
+      - {{ .Values.namespace }}
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - {{ .Values.formManagementProvider.name }}-db
