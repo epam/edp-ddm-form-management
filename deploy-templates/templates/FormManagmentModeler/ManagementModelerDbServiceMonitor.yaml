@@ -8,7 +8,7 @@ metadata:
     relatedNamespace: {{ .Release.Namespace }}
 spec:
   endpoints:
-    {{- range .Values.metrics.prometheus.endpoints }}
+    {{- range .Values.metrics.prometheus.db.endpoints }}
     - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
       interval: 30s
       path: {{ .scrapePath }}

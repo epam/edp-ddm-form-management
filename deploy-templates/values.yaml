@@ -78,9 +78,14 @@ metrics:
     port: 9216
 
   prometheus:
-    endpoints:
-      - scrapePath: "/metrics"
-        port: "{{ .Values.metrics.service.port }}"
+    db:
+      endpoints:
+        - scrapePath: "/metrics"
+          port: "{{ .Values.metrics.service.port }}"
+    app:
+      endpoints:
+        - scrapePath: "/actuator/prometheus"
+          port: "3001"
 
 monitoring:
   namespace: openshift-monitoring
