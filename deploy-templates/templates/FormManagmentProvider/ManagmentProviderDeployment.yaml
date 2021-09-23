@@ -73,16 +73,20 @@ spec:
               "host": "{{ .Values.formManagementProvider.name }}-{{ .Values.cdPipelineName }}-{{ .Values.cdPipelineStageName }}.{{ .Values.dnsWildcard }}",
               "domain": "https://{{ .Values.formManagementProvider.name }}-{{ .Values.cdPipelineName }}-{{ .Values.cdPipelineStageName }}.{{ .Values.dnsWildcard }}"}
         livenessProbe:
-          tcpSocket:
+          httpGet:
+            path: {{ .Values.formManagementProvider.livenessHealthCheckPath }}
             port: {{ .Values.formManagementProvider.port }}
+            scheme: HTTP
           failureThreshold: 10
           initialDelaySeconds: 15
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
         readinessProbe:
-          tcpSocket:
+          httpGet:
+            path: {{ .Values.formManagementProvider.readinessHealthCheckPath }}
             port: {{ .Values.formManagementProvider.port }}
+            scheme: HTTP
           failureThreshold: 10
           initialDelaySeconds: 15
           periodSeconds: 10

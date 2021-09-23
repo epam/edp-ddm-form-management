@@ -8,7 +8,8 @@ formManagementModeler:
   credentials:
     username: admin@edp-epam.com
     password: password123
-  healthCheckPath: /form
+  readinessHealthCheckPath: /actuator/health/readiness
+  livenessHealthCheckPath: /actuator/health/liveness
 
 formManagementProvider:
   name: form-management-provider
@@ -20,7 +21,8 @@ formManagementProvider:
   credentials:
     username: admin@edp-epam.com
     password: password123
-  healthCheckPath: /form
+  readinessHealthCheckPath: /actuator/health/readiness
+  livenessHealthCheckPath: /actuator/health/liveness
 
 formManagementModelerDb:
   image: mongo:4.1
