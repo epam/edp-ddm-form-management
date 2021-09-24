@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const { Formio } = require('../util/util');
+const localization = require('../localization/ua.json');
 
 const debug = {
   validator: require('debug')('formio:validator'),
@@ -91,6 +92,10 @@ class Validator {
           }
           return value;
         },
+      },
+      language: 'ua',
+      i18n: {
+        ua: localization,
       },
     }).then((form) => {
       // Set the validation config.
