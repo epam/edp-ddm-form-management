@@ -91,3 +91,5 @@ metrics:
 
 monitoring:
   namespace: openshift-monitoring
+
+deployProfile: prod
