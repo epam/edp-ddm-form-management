@@ -8,6 +8,11 @@ const debug = {
 
 let hook = null;
 
+// Mock for Formio select requests
+Object.assign(Formio, {
+  makeRequest: () => Promise.resolve([]),
+});
+
 /**
  * @TODO: Isomorphic validation system.
  *
@@ -53,7 +58,6 @@ class Validator {
   /* eslint-disable max-statements */
   validate(submission, next) {
     debug.validator('Starting validation');
-
     // Skip validation if no data is provided.
     if (!submission.data) {
       debug.validator('No data skipping validation');
