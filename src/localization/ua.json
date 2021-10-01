@@ -1,15 +1,15 @@
 {
   "File is too big; it must be at most {{ size }}": "Розмір завантаженого файлу перевищує {{ size }}. Будь ласка, стисніть файл та спробуйте ще раз",
   "File is the wrong type; it must be {{ pattern }}": "Підтримувані формати {{ pattern }}. Будь ласка, завантажте файл підтримуваного формату",
-  "You can only select up to {{maxCount}} items.": "Можна обрати максимум {{maxCount}} значень",
-  "You must select at least {{minCount}} items.": "Потрібно обрати мінімум {{minCount}} значень",
+  "You can only select up to {{maxCount}} items.": "Можна обрати значень - не більше ніж {{maxCount}}",
+  "You must select at least {{minCount}} items.": "Потрібно обрати значень - не менше ніж {{minCount}}",
   "Please save all rows": "Будь ласка, збережіть всі рядки перед підтвердженням",
   "unsavedRowsError": "Будь ласка, збережіть всі рядки перед підтвердженням",
   "invalidRowsError": "Будь ласка, виправте помилки перед підтвердженням",
   "invalidRowError": "Невірний рядок. Виправте його чи видаліть",
   "alertMessageWithLabel": "{{label}}: {{message}}",
   "alertMessage": "{{message}}",
-  "complete": "Збереження успішне",
+  "complete": "Відправку завершено",
   "errorListHotkey": "Натисніть Ctrl + Alt + X щоб повернутися до списку помилок",
   "errorsListNavigationMessage": "Натисніть для переходу до рядка з помилкою",
   "submitError": "Будь ласка, перевірте форму та виправіть помилки перед тим як продовжити",
@@ -24,8 +24,8 @@
   "maxLength": "Допустима кількість символів – не більше, ніж {{length}}",
   "minWords": "Допустима кількість слів – не менше, ніж {{length}}",
   "maxWords": "Допустима кількість слів – не більше, ніж {{length}}",
-  "min": "Мінімальне значення {{min}}",
-  "max": "Максимальне значення {{max}}",
+  "min": "Допустимі значення - не менше ніж {{min}}",
+  "max": "Допустимі значення - не більше ніж {{max}}",
   "maxDate": "Не підтримуються дати після {{- maxDate}}",
   "minDate": "Не підтримуються дати до {{- minDate}}",
   "maxYear": "Не підтримуються роки після {{maxYear}}",
@@ -62,5 +62,5 @@
   "saveDraftAuthError": "Не вдалося зберегти чернетку",
   "restoreDraftInstanceError": "Не вдалося відновити чернетку",
   "time": "Невірний час",
-  "error": "Error(s) occurred:"
+  "error": "Будь ласка, виправте помилку(и)"
 }

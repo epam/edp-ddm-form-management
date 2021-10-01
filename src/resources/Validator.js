@@ -1,6 +1,9 @@
 const _ = require('lodash');
+const Entities = require('html-entities').AllHtmlEntities;
 const { Formio } = require('../util/util');
 const localization = require('../localization/ua.json');
+
+const entities = new Entities();
 
 const debug = {
   validator: require('debug')('formio:validator'),
@@ -136,7 +139,9 @@ class Validator {
         }
 
         const details = [];
-        form.errors.forEach((error) => error.messages.forEach((message) => details.push(message)));
+        form.errors.forEach((error) => error.messages.forEach(
+          (message) => details.push({ ...message, message: entities.decode(message.message) }),
+        ));
 
         // Return the validation errors.
         return next({
