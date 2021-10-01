@@ -37,6 +37,13 @@ spec:
         ports:
           - containerPort: {{ .Values.formManagementModeler.port }}
             name: ui
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 400m
+            memory: 512Mi
         env:
           - name: ROOT_EMAIL
             valueFrom:
