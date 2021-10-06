@@ -4,13 +4,13 @@ const util = require('../util/util');
 
 const EVERYONE = '000000000000000000000000';
 const debug = {
-  template: require('debug')('formio:template:template'),
-  items: require('debug')('formio:template:items'),
-  install: require('debug')('formio:template:install'),
-  save: require('debug')('formio:template:save'),
-  updateSchema: require('debug')('formio:template:updateSchema'),
-  final: require('debug')('formio:template:final'),
-  cleanUp: require('debug')('formio:template:cleanUp'),
+  template: require('../services/customDebug')('formio:template:template'),
+  items: require('../services/customDebug')('formio:template:items'),
+  install: require('../services/customDebug')('formio:template:install'),
+  save: require('../services/customDebug')('formio:template:save'),
+  updateSchema: require('../services/customDebug')('formio:template:updateSchema'),
+  final: require('../services/customDebug')('formio:template:final'),
+  cleanUp: require('../services/customDebug')('formio:template:cleanUp'),
 };
 
 /**

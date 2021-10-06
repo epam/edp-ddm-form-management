@@ -5,7 +5,7 @@ const LOG_EVENT = 'Login Action';
 module.exports = (router) => {
   const { Action } = router.formio;
   const hook = require('../util/hook')(router.formio);
-  const debug = require('debug')('formio:action:login');
+  const debug = require('../services/customDebug')('formio:action:login');
   const ecode = router.formio.util.errorCodes;
   const logOutput = router.formio.log || debug;
   const audit = router.formio.audit || (() => {});

@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const through = require('through');
 const ResourceFactory = require('resourcejs');
-const debug = require('debug')('formio:error');
+const debug = require('../services/customDebug')('formio:error');
 const exporters = require('.');
 
 module.exports = (router) => {

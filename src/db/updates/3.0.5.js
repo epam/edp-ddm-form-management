@@ -3,13 +3,13 @@
 let async = require('async');
 let _ = require('lodash');
 let debug = {
-  getFormsWithUniqueComponents: require('debug')('formio:update:3.0.5-getFormsWithUniqueComponents'),
-  getFormsWithUniqueComponentsInLayoutComponents: require('debug')('formio:update:3.0.5-getFormsWithUniqueComponentsInLayoutComponents'),
-  getFormsWithPotentialUniqueComponentsInLayoutComponents: require('debug')('formio:update:3.0.5-getFormsWithPotentialUniqueComponentsInLayoutComponents'),
-  getAffectedSubmissions: require('debug')('formio:update:3.0.5-getAffectedSubmissions'),
-  buildUniqueComponentList: require('debug')('formio:update:3.0.5-buildUniqueComponentList'),
-  fixSubmissionUniques: require('debug')('formio:update:3.0.5-fixSubmissionUniques'),
-  mergeForms: require('debug')('formio:update:3.0.5-mergeForms')
+  getFormsWithUniqueComponents: require('../services/customDebug')('formio:update:3.0.5-getFormsWithUniqueComponents'),
+  getFormsWithUniqueComponentsInLayoutComponents: require('../services/customDebug')('formio:update:3.0.5-getFormsWithUniqueComponentsInLayoutComponents'),
+  getFormsWithPotentialUniqueComponentsInLayoutComponents: require('../services/customDebug')('formio:update:3.0.5-getFormsWithPotentialUniqueComponentsInLayoutComponents'),
+  getAffectedSubmissions: require('../services/customDebug')('formio:update:3.0.5-getAffectedSubmissions'),
+  buildUniqueComponentList: require('../services/customDebug')('formio:update:3.0.5-buildUniqueComponentList'),
+  fixSubmissionUniques: require('../services/customDebug')('formio:update:3.0.5-fixSubmissionUniques'),
+  mergeForms: require('../services/customDebug')('formio:update:3.0.5-mergeForms')
 };
 
 /**

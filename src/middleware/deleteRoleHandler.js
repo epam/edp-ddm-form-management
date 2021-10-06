@@ -1,4 +1,4 @@
-const debug = require('debug')('formio:middleware:deleteRoleHandler');
+const debug = require('../services/customDebug')('formio:middleware:deleteRoleHandler');
 const util = require('../util/util');
 
 /**

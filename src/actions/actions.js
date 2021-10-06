@@ -4,8 +4,8 @@ const vm = require('vm');
 const _ = require('lodash');
 
 const debug = {
-  error: require('debug')('formio:error'),
-  action: require('debug')('formio:action'),
+  error: require('../services/customDebug')('formio:error'),
+  action: require('../services/customDebug')('formio:action'),
 };
 const moment = require('moment');
 const util = require('../util/util');

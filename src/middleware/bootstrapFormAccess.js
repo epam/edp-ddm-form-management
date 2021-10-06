@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { ObjectId } = mongoose.Types;
 const _ = require('lodash');
-const debug = require('debug')('formio:middleware:bootstrapFormAccess');
+const debug = require('../services/customDebug')('formio:middleware:bootstrapFormAccess');
 
 /**
  * Middleware to bootstrap the access of forms.

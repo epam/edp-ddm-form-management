@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
-const debug = require('debug')('formio:action:passrest');
+const debug = require('../services/customDebug')('formio:action:passrest');
 
 const util = require('../util/util');
 const hookModule = require('../util/hook');

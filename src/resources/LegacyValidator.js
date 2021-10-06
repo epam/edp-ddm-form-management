@@ -7,8 +7,8 @@ const querystring = require('querystring');
 const util = require('../util/util');
 
 const debug = {
-  validator: require('debug')('formio:validator'),
-  error: require('debug')('formio:error'),
+  validator: require('../services/customDebug')('formio:validator'),
+  error: require('../services/customDebug')('formio:error'),
 };
 
 let hook = null;

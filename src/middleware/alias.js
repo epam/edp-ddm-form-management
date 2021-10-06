@@ -1,5 +1,5 @@
 const url = require('url');
-const debug = require('debug')('formio:alias');
+const debug = require('../services/customDebug')('formio:alias');
 
 /**
  * Provides URL alias capabilities.
@@ -51,7 +51,7 @@ module.exports = function (router) {
     // Now load the form by alias.
     router.formio.cache.loadFormByAlias(req, alias, (error, form) => {
       if (error) {
-        debug(`Error: ${error}`);
+        debug(`Error: ${error} - ${req.path}`);
         return res.status(400).send('Invalid alias');
       }
       if (!form) {

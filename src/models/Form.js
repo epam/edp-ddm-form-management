@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const debug = require('debug')('formio:models:form');
+const debug = require('../services/customDebug')('formio:models:form');
 
 module.exports = (formio) => {
   const hook = require('../util/hook')(formio);

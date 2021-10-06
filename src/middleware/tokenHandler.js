@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
-const debugModule = require('debug');
+const debugModule = require('../services/customDebug');
 
 const util = require('../util/util');
 const hookModule = require('../util/hook');

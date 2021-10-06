@@ -2,15 +2,15 @@ const async = require('async');
 const _ = require('lodash');
 
 const debug = {
-  form: require('debug')('formio:cache:form'),
-  loadForm: require('debug')('formio:cache:loadForm'),
-  loadForms: require('debug')('formio:cache:loadForms'),
-  loadFormByName: require('debug')('formio:cache:loadFormByName'),
-  loadFormByAlias: require('debug')('formio:cache:loadFormByAlias'),
-  loadSubmission: require('debug')('formio:cache:loadSubmission'),
-  loadSubmissions: require('debug')('formio:cache:loadSubmissions'),
-  loadSubForms: require('debug')('formio:cache:loadSubForms'),
-  error: require('debug')('formio:error'),
+  form: require('../services/customDebug')('formio:cache:form'),
+  loadForm: require('../services/customDebug')('formio:cache:loadForm'),
+  loadForms: require('../services/customDebug')('formio:cache:loadForms'),
+  loadFormByName: require('../services/customDebug')('formio:cache:loadFormByName'),
+  loadFormByAlias: require('../services/customDebug')('formio:cache:loadFormByAlias'),
+  loadSubmission: require('../services/customDebug')('formio:cache:loadSubmission'),
+  loadSubmissions: require('../services/customDebug')('formio:cache:loadSubmissions'),
+  loadSubForms: require('../services/customDebug')('formio:cache:loadSubForms'),
+  error: require('../services/customDebug')('formio:error'),
 };
 
 module.exports = function (router) {

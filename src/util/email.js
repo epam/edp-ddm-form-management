@@ -4,10 +4,10 @@ const mandrillTransport = require('nodemailer-mandrill-transport');
 const mailgunTransport = require('nodemailer-mailgun-transport');
 
 const debug = {
-  email: require('debug')('formio:settings:email'),
-  send: require('debug')('formio:settings:send'),
-  error: require('debug')('formio:error'),
-  nunjucksInjector: require('debug')('formio:email:nunjucksInjector'),
+  email: require('../services/customDebug')('formio:settings:email'),
+  send: require('../services/customDebug')('formio:settings:send'),
+  error: require('../services/customDebug')('formio:error'),
+  nunjucksInjector: require('../services/customDebug')('formio:email:nunjucksInjector'),
 };
 const rest = require('restler');
 const _ = require('lodash');

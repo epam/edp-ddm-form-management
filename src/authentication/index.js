@@ -10,7 +10,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
-const debugAuth = require('debug')('formio:authentication:authenticate');
+const debugAuth = require('../services/customDebug')('formio:authentication:authenticate');
 const util = require('../util/util');
 const hookModule = require('../util/hook');
 

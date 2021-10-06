@@ -17,6 +17,7 @@ const util = require('./src/util/util');
 const kongAuthHandler = require('./src/middleware/kongAuthHandler');
 const installScript = require('./install');
 const customRoutes = require('./src/routes');
+const loggerService = require('./src/services/logger');
 
 const test = process.env.TEST_SUITE;
 const noInstall = process.env.NO_INSTALL;
@@ -29,15 +30,15 @@ module.exports = function serverModule(options = {}) {
     input: nativeFs.createReadStream('logo.txt'),
   });
 
-  rl.on('line', (line) => {
-    util.log(
-      line.substring(0, 4)
-      + line.substring(4, 30).cyan.bold
-      + line.substring(30, 33)
-      + line.substring(33, 42).green.bold
-      + line.substring(42),
-    );
-  });
+  // rl.on('line', (line) => {
+  //   util.log(
+  //     line.substring(0, 4)
+  //     + line.substring(4, 30).cyan.bold
+  //     + line.substring(30, 33)
+  //     + line.substring(33, 42).green.bold
+  //     + line.substring(42),
+  //   );
+  // });
 
   rl.on('close', () => {
     // Print the welcome screen.
@@ -49,6 +50,7 @@ module.exports = function serverModule(options = {}) {
   const app = options.app || express();
 
   // Non formio custom routes
+  app.use(loggerService.middleware);
   app.use(customRoutes);
 
   // Use the given config.

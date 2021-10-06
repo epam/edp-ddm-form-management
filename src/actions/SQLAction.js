@@ -1,7 +1,7 @@
 const mssql = require('mssql');
 const mysql = require('mysql');
 const _ = require('lodash');
-const debug = require('debug')('formio:action:sql');
+const debug = require('../services/customDebug')('formio:action:sql');
 
 const LOG_EVENT = 'SQL Action';
 

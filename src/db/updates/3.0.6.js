@@ -3,8 +3,8 @@
 let async = require('async');
 let chance = new (require('chance'))();
 let debug = {
-  findBrokenForms: require('debug')('formio:update:3.0.6-findBrokenForms'),
-  randomizeBrokenFormPaths: require('debug')('formio:update:3.0.6-randomizeBrokenFormPaths')
+  findBrokenForms: require('../services/customDebug')('formio:update:3.0.6-findBrokenForms'),
+  randomizeBrokenFormPaths: require('../services/customDebug')('formio:update:3.0.6-randomizeBrokenFormPaths')
 };
 
 /**

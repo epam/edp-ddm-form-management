@@ -1,4 +1,4 @@
-const debug = require('debug')('formio:middleware:deleteActionHandler');
+const debug = require('../services/customDebug')('formio:middleware:deleteActionHandler');
 const util = require('../util/util');
 
 /**

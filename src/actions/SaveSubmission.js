@@ -7,7 +7,7 @@ const LOG_EVENT = 'Save Submission Action';
 
 module.exports = function (router) {
   const { Action } = router.formio;
-  const debug = require('debug')('formio:action:saveSubmission');
+  const debug = require('../services/customDebug')('formio:action:saveSubmission');
   const hook = require('../util/hook')(router.formio);
   const ecode = router.formio.util.errorCodes;
   const logOutput = router.formio.log || debug;

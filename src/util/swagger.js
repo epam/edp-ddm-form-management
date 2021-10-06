@@ -2,7 +2,7 @@ const _ = require('lodash');
 const util = require('./util');
 
 const debug = {
-  error: require('debug')('formio:error'),
+  error: require('../services/customDebug')('formio:error'),
 };
 
 module.exports = function (req, router, cb) {

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const debug = require('debug')('formio:middleware:submissionResourceAccessFilter');
+const debug = require('../services/customDebug')('formio:middleware:submissionResourceAccessFilter');
 
 module.exports = function submissionResourceAccessFilter(router) {
   return (req, res, next) => {

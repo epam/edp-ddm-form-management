@@ -6,7 +6,7 @@ const nodeUrl = require('url');
 const deleteProp = require('delete-property').default;
 const workerUtils = require('formio-workers/util');
 const vm = require('vm');
-const debugModule = require('debug');
+const debugModule = require('../services/customDebug');
 
 const errorCodes = require('./error-codes.js');
 const fetch = require('./fetch');
@@ -15,6 +15,7 @@ const debug = {
   idToBson: debugModule('formio:util:idToBson'),
   getUrlParams: debugModule('formio:util:getUrlParams'),
   removeProtectedFields: debugModule('formio:util:removeProtectedFields'),
+  info: debugModule('formio:util:info'),
 };
 
 // Define a few global noop placeholder shims and import the component classes
@@ -71,9 +72,10 @@ const Utils = {
       return;
     }
 
-    /* eslint-disable */
-    console.log(content);
-    /* eslint-enable */
+    // /* eslint-disable */
+    // console.log(content);
+    // /* eslint-enable */
+    debug.info(content);
   },
 
   /**

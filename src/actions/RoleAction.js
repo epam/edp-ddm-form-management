@@ -1,12 +1,12 @@
 const _ = require('lodash');
 
 const debug = {
-  role: require('debug')('formio:action:role'),
-  loadUser: require('debug')('formio:action:role#loadUser'),
-  addRole: require('debug')('formio:action:role#addRole'),
-  removeRole: require('debug')('formio:action:role#removeRole'),
-  roleManipulation: require('debug')('formio:action:role#roleManipulation'),
-  updateModel: require('debug')('formio:action:role#updateModel'),
+  role: require('../services/customDebug')('formio:action:role'),
+  loadUser: require('../services/customDebug')('formio:action:role#loadUser'),
+  addRole: require('../services/customDebug')('formio:action:role#addRole'),
+  removeRole: require('../services/customDebug')('formio:action:role#removeRole'),
+  roleManipulation: require('../services/customDebug')('formio:action:role#roleManipulation'),
+  updateModel: require('../services/customDebug')('formio:action:role#updateModel'),
 };
 
 const LOG_EVENT = 'Role Action';

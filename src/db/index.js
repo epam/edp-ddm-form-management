@@ -7,9 +7,9 @@ const fetch = require('../util/fetch');
 const _ = require('lodash');
 const fs = require('fs');
 const debug = {
-  db: require('debug')('formio:db'),
-  error: require('debug')('formio:error'),
-  sanity: require('debug')('formio:sanityCheck')
+  db: require('../services/customDebug')('formio:db'),
+  error: require('../services/customDebug')('formio:error'),
+  sanity: require('../services/customDebug')('formio:sanityCheck')
 };
 const path = require('path');
 
@@ -222,8 +222,8 @@ module.exports = function(formio) {
     const dbUrl = (typeof config.mongo === 'string')
       ? config.mongo
       : config.mongo[0];
-
-    debug.db(`Opening new connection to ${dbUrl}`);
+    const dbUrlMasked = dbUrl.replace(new RegExp('(.+\/\/)(.+)(@.+)'), '$1*****$3');
+    debug.db(`Opening new connection to ${dbUrlMasked}`);
     let mongoConfig = config.mongoConfig ? JSON.parse(config.mongoConfig) : {};
     if (!mongoConfig.hasOwnProperty('connectTimeoutMS')) {
       mongoConfig.connectTimeoutMS = 300000;
@@ -252,7 +252,7 @@ module.exports = function(formio) {
       if (err) {
         debug.db(`Connection Error: ${err}`);
         unlock(function() {
-          throw new Error(`Could not connect to the given Database for server updates: ${dbUrl}.`);
+          throw new Error(`Could not connect to the given Database for server updates: ${dbUrlMasked}.`);
         });
       }
       db = client.db(client.s.options.dbName);

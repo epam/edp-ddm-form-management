@@ -2,8 +2,8 @@
 
 let async = require('async');
 let debug = {
-  findBrokenForms: require('debug')('formio:update:3.0.7-findBrokenForms'),
-  fixTypes: require('debug')('formio:update:3.0.7-fixTypes')
+  findBrokenForms: require('../services/customDebug')('formio:update:3.0.7-findBrokenForms'),
+  fixTypes: require('../services/customDebug')('formio:update:3.0.7-fixTypes')
 };
 
 /**

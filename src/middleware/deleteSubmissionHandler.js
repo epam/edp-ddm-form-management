@@ -1,4 +1,4 @@
-const debug = require('debug')('formio:middleware:deleteSubmissionHandler');
+const debug = require('../services/customDebug')('formio:middleware:deleteSubmissionHandler');
 
 /**
  * The deleteSubmissionHandler middleware.

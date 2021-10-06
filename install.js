@@ -8,8 +8,8 @@ const ProgressBar = require('progress');
 
 nunjucks.configure([], { watch: false });
 
-const debug = require('debug')('formio:error');
 const path = require('path');
+const debug = require('./src/services/customDebug')('formio:error');
 const importerModule = require('./src/templates/import');
 
 const util = require('./src/util/util');
