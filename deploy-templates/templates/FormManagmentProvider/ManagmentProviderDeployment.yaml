@@ -72,6 +72,10 @@ spec:
               "mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@{{ .Values.formManagementProvider.name }}-db-headless:{{ .Values.formManagementProviderDb.service.port }}/{{ .Values.formManagementProviderDb.defaultDatabase }}?authSource=admin",
               "host": "{{ .Values.formManagementProvider.name }}-{{ .Values.cdPipelineName }}-{{ .Values.cdPipelineStageName }}.{{ .Values.dnsWildcard }}",
               "domain": "https://{{ .Values.formManagementProvider.name }}-{{ .Values.cdPipelineName }}-{{ .Values.cdPipelineStageName }}.{{ .Values.dnsWildcard }}"}
+          - name: LOG_LEVEL
+            value: INFO
+          - name: LOG_HTTP_BODY
+            value: false
         livenessProbe:
           httpGet:
             path: {{ .Values.formManagementProvider.livenessHealthCheckPath }}
