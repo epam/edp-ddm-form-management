@@ -1,3 +1,6 @@
+global:
+  disableRequestsLimits: false
+
 formManagementModeler:
   name: form-management-modeler
   port: 3001

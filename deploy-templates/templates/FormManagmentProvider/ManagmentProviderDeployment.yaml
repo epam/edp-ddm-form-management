@@ -38,6 +38,7 @@ spec:
         ports:
           - containerPort: {{ .Values.formManagementProvider.port }}
             name: ui
+        {{- if not .Values.global.disableRequestsLimits }}
         resources:
           limits:
             cpu: 500m
@@ -45,6 +46,7 @@ spec:
           requests:
             cpu: 500m
             memory: 512Mi
+        {{- end }}
         env:
           - name: LOG_LEVEL
             value: INFO
