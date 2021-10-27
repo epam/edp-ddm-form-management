@@ -47,6 +47,8 @@ spec:
             memory: 512Mi
         {{- end }}
         env:
+          - name: NODE_OPTIONS
+            value: "--max-http-header-size=32000"
           - name: ROOT_EMAIL
             valueFrom:
               secretKeyRef:
