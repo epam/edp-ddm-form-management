@@ -48,6 +48,8 @@ spec:
             memory: 512Mi
         {{- end }}
         env:
+          - name: NODE_OPTIONS
+            value: "--max-http-header-size=32000"
           - name: LOG_LEVEL
             value: INFO
           - name: LOG_HTTP_BODY
