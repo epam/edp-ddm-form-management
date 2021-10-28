@@ -36,6 +36,9 @@ const swagger = require('./src/util/swagger');
 const recaptcha = require('./src/middleware/recaptcha');
 const { hasOwnProperty } = require('./src/util/helpers');
 
+const originalGetToken = util.Formio.getToken;
+const originalEvalContext = util.Formio.Components.components.component.prototype.evalContext;
+
 // Keep track of the formio interface.
 router.formio = {};
 
@@ -119,6 +122,15 @@ module.exports = function main(config) {
       router.use((req, res, next) => {
         util.Formio.forms = {};
         util.Formio.cache = {};
+        util.Formio.Components.components.component.Validator.config = {
+          db: null,
+          token: null,
+          form: null,
+          submission: null,
+        };
+        util.Formio.getToken = originalGetToken;
+        util.Formio.Components.components.component.prototype.evalContext = originalEvalContext;
+
         next();
       });
 

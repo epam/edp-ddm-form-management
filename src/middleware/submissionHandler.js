@@ -185,8 +185,12 @@ module.exports = (router) => {
         // Next we need to validate the input.
         const token = util.getRequestValue(req, 'x-jwt-token');
         const _Validator = useLegacyValidator ? LegacyValidator : Validator;
-        _Validator.setHook(hook);
-        const validator = new _Validator(req.currentForm, submissionModel, token, req.token);
+
+        if (useLegacyValidator) {
+          _Validator.setHook(hook);
+        }
+
+        const validator = new _Validator(req.currentForm, submissionModel, token, req.token, hook);
 
         // Validate the request.
         validator.validate(req.body, (err, data) => {
