@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.formManagementProvider.name }}-db-metrics
-        image: {{ .Values.metrics.image }}
+        image: {{ template "imageRegistry" . -}} {{ .Values.metrics.image }}
         command:
           - /bin/bash
           - '-ec'
@@ -43,7 +43,7 @@ spec:
             containerPort: {{ .Values.metrics.containerPort }}
             protocol: TCP
       - name: {{ .Values.formManagementProvider.name }}-db
-        image: {{ template "dockerProxyRegistry" . -}} {{ .Values.formManagementProviderDb.image }}
+        image: {{ template "imageRegistry" . -}} {{ .Values.formManagementProviderDb.image }}
         ports:
           - containerPort: {{ .Values.formManagementProviderDb.port }}
             name: mongo

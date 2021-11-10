@@ -29,7 +29,7 @@ spec:
           - >-
             while ! nc -w 1 {{ .Values.formManagementProvider.name }}-db-headless {{ .Values.formManagementProviderDb.service.port }} </dev/null; do echo waiting for
             database; sleep 10; done;
-        image: {{ template "dockerProxyRegistry" . -}} busybox
+        image: {{ template "imageRegistry" . -}} busybox
         imagePullPolicy: IfNotPresent
         name: {{ .Values.formManagementProvider.name }}-init
       containers:
