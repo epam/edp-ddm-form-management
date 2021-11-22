@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 const _ = require('lodash');
 const Entities = require('html-entities').AllHtmlEntities;
 const { Formio } = require('../util/util');

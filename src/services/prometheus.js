@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 const client = require('prom-client');
 
 const { NODE_APP_INSTANCE = 'form-management' } = process.env;

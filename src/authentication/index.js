@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 /* eslint-disable no-underscore-dangle */
 /**
  * All the user authentication in one place.

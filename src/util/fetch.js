@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 const { Agent } = require('https');
 const { parse } = require('url');
 const fetch = require('node-fetch');

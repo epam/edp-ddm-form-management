@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 const fetch = require('../util/fetch');
 
 const LOG_EVENT = 'Email Action';

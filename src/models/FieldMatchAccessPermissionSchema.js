@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 module.exports = function (formio) {
   const hook = require('../util/hook')(formio);
   const typeError = 'Value does not match a selected type';

@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 const Resource = require('resourcejs');
 const async = require('async');
 const vm = require('vm');

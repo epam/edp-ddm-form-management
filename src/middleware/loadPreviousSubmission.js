@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 module.exports = (router) => (req, res, next) => {
   if (!['PUT', 'PATCH', 'DELETE'].includes(req.method)) {
     return next();

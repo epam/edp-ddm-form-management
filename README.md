@@ -70,6 +70,4 @@ browser.
 
 ### License
 
-The form-management is now licensed under
-the [OSL-v3 license](https://opensource.org/licenses/OSL-3.0), which is a copy-left OSI approved
-license.
+form-management is Open Source software, which is a Derivative Work based on [Form.IO](https://github.com/formio/formio) library and released under [OSL-3.0 license](https://opensource.org/licenses/OSL-3.0).

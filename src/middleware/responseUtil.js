@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 /**
  * Add jsonPretty() to requests, for returning human readible json
  *

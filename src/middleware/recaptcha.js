@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 const querystring = require('querystring');
 const fetch = require('../util/fetch');
 

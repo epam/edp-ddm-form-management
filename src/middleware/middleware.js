@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 module.exports = function (router) {
   return {
     alias: require('./alias')(router),

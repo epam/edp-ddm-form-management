@@ -1,3 +1,7 @@
+/*
+ * Derivative Work based on <Form.IO> library and released under OSL-3.0 license.
+ */
+
 /* eslint-disable max-classes-per-file */
 const mongoose = require('mongoose');
 const { ObjectID } = require('mongodb');
