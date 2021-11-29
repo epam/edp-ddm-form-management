@@ -1,0 +1,3 @@
+# registry variable should be set for local development, in CI environment registry variable should be provided as an environment
+# variable or through config argument to command npm install (npm i --registry=https://example.com)
+registry=https://nexus-public-mdtu-ddm-edp-cicd.apps.cicd2.mdtu-ddm.projects.epam.com/repository/edp-npm-group/
