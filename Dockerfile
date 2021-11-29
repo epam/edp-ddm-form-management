@@ -4,7 +4,7 @@
 
 # Use Node image, maintained by Docker:
 # hub.docker.com/r/_/node/
-FROM nexus-docker-registry.apps.cicd2.mdtu-ddm.projects.epam.com/node:lts-alpine3.10
+FROM node:lts-alpine3.10
 WORKDIR /app
 
 # "bcrypt" requires python/make/g++, all must be installed in alpine
