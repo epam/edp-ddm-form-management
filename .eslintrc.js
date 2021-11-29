@@ -26,6 +26,6 @@ module.exports = {
     'prefer-spread': 'off',
     'func-names': 'off',
     'no-multi-assign': 'off',
-
+    'linebreak-style': 'off',
   },
 };

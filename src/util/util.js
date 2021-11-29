@@ -36,6 +36,7 @@ global.document = {
 global.window = { addEventListener: () => {}, Event: {}, navigator: global.navigator };
 // eslint-disable-next-line import/order
 const { FormioModule } = require('mdtu-web-components');
+// eslint-disable-next-line import/order
 const Formio = require('formiojs/formio.form.js');
 
 // Remove onChange events from all renderer displays.
