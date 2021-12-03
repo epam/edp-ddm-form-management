@@ -7,6 +7,8 @@
 FROM node:lts-alpine3.10
 WORKDIR /app
 
+ARG NPM_REGISTRY
+
 # "bcrypt" requires python/make/g++, all must be installed in alpine
 # (note: using pinned versions to ensure immutable build environment)
 RUN apk update && \
