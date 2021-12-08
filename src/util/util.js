@@ -35,9 +35,6 @@ global.document = {
 };
 global.window = { addEventListener: () => {}, Event: {}, navigator: global.navigator };
 // eslint-disable-next-line import/order
-// TODO: solve the problem with custom components
-// const { FormioModule } = require('mdtu-web-components');
-// eslint-disable-next-line import/order
 const Formio = require('formiojs/formio.form.js');
 
 // Remove onChange events from all renderer displays.
@@ -45,8 +42,6 @@ _.each(Formio.Displays.displays, (display) => {
   display.prototype.onChange = _.noop;
 });
 
-// TODO: solve the problem with custom components
-// Formio.Formio.use(FormioModule);
 Formio.Utils.Evaluator.noeval = true;
 Formio.Utils.Evaluator.evaluator = (func, args) => () => {
   const params = _.keys(args);

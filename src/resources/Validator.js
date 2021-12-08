@@ -19,6 +19,22 @@ Object.assign(Formio, {
   makeRequest: () => Promise.resolve([]),
 });
 
+// Remove 'Latest' and 'Legacy' parts of component types
+const convertComponentType = (type) => _.replace(
+  _.replace(type, 'Latest', ''),
+  'Legacy',
+  '',
+);
+
+// Rename custom components so they can be validated as default ones
+const convertComponents = (components) => (
+  components.map((component) => ({
+    ...component,
+    type: convertComponentType(component.type),
+    ...(component.components ? { components: convertComponents(component.components) } : {}),
+  }))
+);
+
 /**
  * @TODO: Isomorphic validation system.
  *
@@ -28,8 +44,9 @@ Object.assign(Formio, {
  */
 class Validator {
   constructor(form, model, token, decodedToken, hook) {
+    const normalizedForm = { ...form, components: convertComponents(form.components) };
     this.model = model;
-    this.form = form;
+    this.form = normalizedForm;
     this.token = token;
     this.hook = hook;
 
