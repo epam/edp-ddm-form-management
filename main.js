@@ -8,5 +8,7 @@ require('colors');
 require('./server')().then((state) => {
   util.log(` > Serving the Form.io API Platform at ${state.config.domain.green}`);
   healthService.setReadiness(true);
-  state.server.listen(state.config.port);
+  const nodeServer = state.server.listen(state.config.port);
+  const SERVER_KEEP_ALIVE_TIMEOUT = process.env.SERVER_KEEP_ALIVE_TIMEOUT || 60 * 1000;
+  nodeServer.keepAliveTimeout = SERVER_KEEP_ALIVE_TIMEOUT;
 });
