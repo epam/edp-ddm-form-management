@@ -51,9 +51,9 @@ spec:
           - name: NODE_OPTIONS
             value: "--max-http-header-size=32000"
           - name: LOG_LEVEL
-            value: INFO
+            value: "{{ .Values.formManagementProvider.logLevel }}"
           - name: LOG_HTTP_BODY
-            value: 'false'
+            value: "{{ .Values.formManagementProvider.logHttpBody }}"
           - name: ROOT_EMAIL
             valueFrom:
               secretKeyRef:

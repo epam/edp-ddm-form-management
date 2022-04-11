@@ -26,6 +26,8 @@ formManagementProvider:
     password: password123
   readinessHealthCheckPath: /actuator/health/readiness
   livenessHealthCheckPath: /actuator/health/liveness
+  logLevel: INFO
+  logHttpBody: 'false'
 
 formManagementModelerDb:
   image: mongo:4.1
