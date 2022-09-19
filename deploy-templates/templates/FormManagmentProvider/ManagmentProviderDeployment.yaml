@@ -18,9 +18,17 @@ spec:
     metadata:
       labels:
         app: {{ .Values.formManagementProvider.name }}
+      {{- if or .Values.formManagementProvider.podAnnotations .Values.global.registry.formManagementProvider.istio.sidecar.enabled }}
       annotations:
-        sidecar.istio.io/inject: "true"
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+        {{- if .Values.global.registry.formManagementProvider.istio.sidecar.enabled }}
         traffic.sidecar.istio.io/excludeOutboundPorts: '{{ .Values.formManagementProviderDb.service.port }}'
+        sidecar.istio.io/inject: 'true'
+        {{- include "formManagementProvider.istioResources" . | nindent 8 }}
+        {{- end }}
+      {{- end }}
     spec:
       initContainers:
       - command:
@@ -40,14 +48,13 @@ spec:
             name: ui
         {{- if not .Values.global.disableRequestsLimits }}
         resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 500m
-            memory: 512Mi
+          {{- toYaml .Values.global.registry.formManagementProvider.container.resources | nindent 10 }}
         {{- end }}
         env:
+          {{- range $name, $value := .Values.global.registry.formManagementProvider.container.envVars }}
+          - name: {{ $name }}
+            value: {{ $value | quote}}
+          {{- end }}
           - name: NODE_OPTIONS
             value: "--max-http-header-size=32000"
           - name: LOG_LEVEL

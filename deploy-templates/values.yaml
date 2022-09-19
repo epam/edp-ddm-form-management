@@ -1,5 +1,16 @@
 global:
   disableRequestsLimits: false
+  registry:
+    formManagementProvider:
+      istio:
+        sidecar:
+          enabled: true
+          resources:
+            limits: {}
+            requests: {}
+      container:
+        resources: {}
+        envVars: {}
 
 formManagementModeler:
   name: form-management-modeler
@@ -15,6 +26,7 @@ formManagementModeler:
   livenessHealthCheckPath: /actuator/health/liveness
 
 formManagementProvider:
+  podAnnotations: {}
   name: form-management-provider
   port: 3001
   service:
