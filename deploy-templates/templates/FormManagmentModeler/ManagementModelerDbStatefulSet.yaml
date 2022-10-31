@@ -1,3 +1,4 @@
+{{- if eq .Values.global.deploymentMode "development" }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -95,3 +96,4 @@ spec:
           requests:
             storage: {{ .Values.formManagementModelerDb.storage.size }}
         {{ include "db.storageClass" . }}
+{{- end }}

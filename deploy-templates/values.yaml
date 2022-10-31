@@ -1,5 +1,6 @@
 global:
   disableRequestsLimits: false
+  deploymentMode: development
   registry:
     formManagementProvider:
       istio:
@@ -108,5 +109,3 @@ metrics:
 
 monitoring:
   namespace: openshift-monitoring
-
-deployProfile: prod

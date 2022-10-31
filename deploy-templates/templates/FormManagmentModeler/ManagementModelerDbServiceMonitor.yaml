@@ -1,3 +1,4 @@
+{{- if eq .Values.global.deploymentMode "development" }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -25,3 +26,4 @@ spec:
         operator: In
         values:
           - {{ .Values.formManagementModeler.name }}-db
+{{- end }}
